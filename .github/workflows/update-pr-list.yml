@@ -1,0 +1,72 @@
+name: Update Merged PR List
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  update-readme:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update README with merged PR
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_MERGED_AT: ${{ github.event.pull_request.merged_at }}
+          PR_LABELS: ${{ toJSON(github.event.pull_request.labels) }}
+        run: |
+          # Extract year from merged_at timestamp
+          YEAR=$(echo "$PR_MERGED_AT" | cut -d'-' -f1)
+
+          # Extract label names from JSON array
+          TAGS=$(echo "$PR_LABELS" | jq -r '[.[].name] | join(", ")')
+          if [ -z "$TAGS" ] || [ "$TAGS" = "null" ]; then
+            TAGS="-"
+          fi
+
+          # Escape special characters in title for sed
+          SAFE_TITLE=$(echo "$PR_TITLE" | sed 's/|/\\|/g')
+
+          # Create the new table row
+          NEW_ROW="| #${PR_NUMBER} | ${SAFE_TITLE} |"
+          NEW_ROW="${NEW_ROW} [Link](${PR_URL}) | ${YEAR} | ${TAGS} |"
+
+          # Find the line number of the table header
+          TABLE_HEADER_LINE=$(grep -n "| PR # | Title | Link | Year | Tags |" README.md | cut -d: -f1)
+          
+          # Insert after the separator line (2 lines after header)
+          INSERT_LINE=$((TABLE_HEADER_LINE + 2))
+          
+          # Insert the new row
+          sed -i "${INSERT_LINE}i ${NEW_ROW}" README.md
+
+          echo "Added PR #${PR_NUMBER} to README.md"
+          cat README.md
+
+      - name: Commit changes
+        run: |
+          git config --local user.email \
+            "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          if ! git diff --staged --quiet; then
+            git commit -m \
+              "docs: add PR #${{ github.event.pull_request.number }} to list"
+          fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
