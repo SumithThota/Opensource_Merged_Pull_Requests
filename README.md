@@ -20,6 +20,7 @@ This repository automatically tracks all merged Pull Requests with detailed info
 
 | PR # | Title | Link | Year | Tags |
 |------|-------|------|------|------|
+| #1 | Add automated merged PR tracking with GitHub Actions and historical PRs backfill | [Link](https://github.com/SumithThota/Opensource-Merged-PR-s-/pull/1) | 2025 | - |
 | #2392 | Prevent invalid user ID (ServiceNowDevProgram/code-snippets) | [Link](https://github.com/ServiceNowDevProgram/code-snippets/pull/2392) | 2025 | - |
 | #2381 | Correct Readme files added according to the scripts (ServiceNowDevProgram/code-snippets) | [Link](https://github.com/ServiceNowDevProgram/code-snippets/pull/2381) | 2025 | - |
 | #2376 | Script to update all email domains (ServiceNowDevProgram/code-snippets) | [Link](https://github.com/ServiceNowDevProgram/code-snippets/pull/2376) | 2025 | - |
