@@ -1,6 +1,6 @@
 # Opensource Merged PRs Tracker
 
-This repository automatically tracks all merged Pull Requests with detailed information.
+This repository automatically tracks all my merged Open source Pull Requests with detailed information.
 
 ## 📊 Merged Pull Requests
 
