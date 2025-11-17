@@ -16,9 +16,10 @@ This repository automatically tracks all merged Pull Requests with detailed info
 
 ## 📊 Merged Pull Requests
 
+<!-- PR_LIST_START -->
+
 | PR # | Title | Link | Year | Tags |
 |------|-------|------|------|------|
-<!-- PR_LIST_START -->
 | #2392 | Prevent invalid user ID (ServiceNowDevProgram/code-snippets) | [Link](https://github.com/ServiceNowDevProgram/code-snippets/pull/2392) | 2025 | - |
 | #2381 | Correct Readme files added according to the scripts (ServiceNowDevProgram/code-snippets) | [Link](https://github.com/ServiceNowDevProgram/code-snippets/pull/2381) | 2025 | - |
 | #2376 | Script to update all email domains (ServiceNowDevProgram/code-snippets) | [Link](https://github.com/ServiceNowDevProgram/code-snippets/pull/2376) | 2025 | - |
@@ -38,6 +39,7 @@ This repository automatically tracks all merged Pull Requests with detailed info
 | #972 | Sets proper fonts size to FAQs (Suchitra-Sahoo/AgriLearnNetwork) | [Link](https://github.com/Suchitra-Sahoo/AgriLearnNetwork/pull/972) | 2024 | gssoc, level1 |
 | #923 | Hover to quicklinks is added to all pages & FAQ is added (Suchitra-Sahoo/AgriLearnNetwork) | [Link](https://github.com/Suchitra-Sahoo/AgriLearnNetwork/pull/923) | 2024 | gssoc, level2 |
 | #898 | Updated welcome div by enhancing it & added glow effect (Suchitra-Sahoo/AgriLearnNetwork) | [Link](https://github.com/Suchitra-Sahoo/AgriLearnNetwork/pull/898) | 2024 | gssoc, level1 |
+
 <!-- PR_LIST_END -->
 
 ## ✨ Features

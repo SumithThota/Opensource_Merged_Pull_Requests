@@ -42,8 +42,14 @@ jobs:
           NEW_ROW="| #${PR_NUMBER} | ${SAFE_TITLE} |"
           NEW_ROW="${NEW_ROW} [Link](${PR_URL}) | ${YEAR} | ${TAGS} |"
 
-          # Insert the new row after the PR_LIST_START marker
-          sed -i "/<!-- PR_LIST_START -->/a ${NEW_ROW}" README.md
+          # Find the line number of the table header
+          TABLE_HEADER_LINE=$(grep -n "| PR # | Title | Link | Year | Tags |" README.md | cut -d: -f1)
+          
+          # Insert after the separator line (2 lines after header)
+          INSERT_LINE=$((TABLE_HEADER_LINE + 2))
+          
+          # Insert the new row
+          sed -i "${INSERT_LINE}i ${NEW_ROW}" README.md
 
           echo "Added PR #${PR_NUMBER} to README.md"
           cat README.md

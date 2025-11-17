@@ -69,9 +69,17 @@ cp README.md README.md.backup
 # Insert all historical PRs into README
 echo "📝 Updating README.md..."
 
-# Read the temp file in reverse order (newest first) and insert after PR_LIST_START
+# Find the line number of the table header
+TABLE_HEADER_LINE=$(grep -n "| PR # | Title | Link | Year | Tags |" README.md | cut -d: -f1)
+
+# Insert after the separator line (2 lines after header)
+INSERT_LINE=$((TABLE_HEADER_LINE + 2))
+
+# Read the temp file in reverse order (newest first) and insert after separator
+LINE_NUM=$INSERT_LINE
 while IFS= read -r line; do
-    sed -i "/<!-- PR_LIST_START -->/a $line" README.md
+    sed -i "${LINE_NUM}i $line" README.md
+    echo "✅ Inserted at line $LINE_NUM"
 done < <(tac "$TEMP_FILE")
 
 echo "✅ README.md has been updated with $PR_COUNT historical PRs!"
