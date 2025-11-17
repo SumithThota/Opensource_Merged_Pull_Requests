@@ -2,6 +2,14 @@
 
 This repository automatically tracks all merged Pull Requests with detailed information.
 
+## 🚀 Quick Start
+
+1. Fork or clone this repository
+2. Ensure GitHub Actions has write permissions:
+   - Go to Settings → Actions → General
+   - Select "Read and write permissions"
+3. Start merging PRs - they'll be automatically tracked!
+
 ## 📊 Merged Pull Requests
 
 | PR # | Title | Link | Year | Tags |
@@ -17,6 +25,8 @@ This repository uses GitHub Actions to automatically update the table above when
 2. Extracts PR details (number, title, labels, merge date)
 3. Updates this README with the new entry
 4. Commits the changes automatically
+
+📖 For detailed setup and customization instructions, see [SETUP.md](SETUP.md)
 
 ## 📝 Table Columns
 
