@@ -2,18 +2,6 @@
 
 This repository automatically tracks all merged Pull Requests with detailed information.
 
-## 🚀 Quick Start
-
-1. Fork or clone this repository
-2. Ensure GitHub Actions has write permissions:
-   - Go to Settings → Actions → General
-   - Select "Read and write permissions"
-3. (Optional) Run the backfill script to add your historical merged PRs:
-   ```bash
-   ./scripts/backfill-historical-prs.sh
-   ```
-4. Start merging PRs - they'll be automatically tracked!
-
 ## 📊 Merged Pull Requests
 
 <!-- PR_LIST_START -->
@@ -42,6 +30,18 @@ This repository automatically tracks all merged Pull Requests with detailed info
 | #898 | Updated welcome div by enhancing it & added glow effect (Suchitra-Sahoo/AgriLearnNetwork) | [Link](https://github.com/Suchitra-Sahoo/AgriLearnNetwork/pull/898) | 2024 | gssoc, level1 |
 
 <!-- PR_LIST_END -->
+
+## 🚀 How to setup
+
+1. Fork or clone this repository
+2. Ensure GitHub Actions has write permissions:
+   - Go to Settings → Actions → General
+   - Select "Read and write permissions"
+3. (Optional) Run the backfill script to add your historical merged PRs:
+   ```bash
+   ./scripts/backfill-historical-prs.sh
+   ```
+4. Start merging PRs - they'll be automatically tracked!
 
 ## ✨ Features
 
