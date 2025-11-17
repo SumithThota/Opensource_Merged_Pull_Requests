@@ -122,6 +122,41 @@ TAGS=$(echo "$PR_LABELS" | jq -r '[.[].name] | join(", ")')
 3. Merge the PR
 4. Check if the README.md is updated automatically
 
+### Backfilling Historical PRs
+
+To populate the table with your previously merged PRs from other repositories:
+
+#### Option 1: Using the Backfill Script (Requires GitHub CLI)
+
+```bash
+# Install GitHub CLI if not already installed
+# Visit: https://cli.github.com/
+
+# Authenticate with GitHub
+gh auth login
+
+# Run the backfill script
+./scripts/backfill-historical-prs.sh
+```
+
+The script will:
+1. Search for all your merged PRs across GitHub
+2. Extract PR details (number, title, URL, year, labels, repository)
+3. Add them to the README table
+4. Create a backup (README.md.backup) before making changes
+
+#### Option 2: Manual Addition
+
+You can manually add historical PRs by editing README.md:
+
+```markdown
+<!-- PR_LIST_START -->
+| #123 | My PR Title (owner/repo) | [Link](url) | 2024 | bug, feature |
+<!-- PR_LIST_END -->
+```
+
+**Important**: Always add new entries between the `<!-- PR_LIST_START -->` and `<!-- PR_LIST_END -->` markers.
+
 ## Troubleshooting
 
 ### Workflow Not Running
