@@ -11,13 +11,13 @@ jobs:
     permissions:
       contents: write
       pull-requests: read
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: Update README with merged PR
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -28,32 +28,37 @@ jobs:
         run: |
           # Extract year from merged_at timestamp
           YEAR=$(echo "$PR_MERGED_AT" | cut -d'-' -f1)
-          
+
           # Extract label names from JSON array
           TAGS=$(echo "$PR_LABELS" | jq -r '[.[].name] | join(", ")')
           if [ -z "$TAGS" ] || [ "$TAGS" = "null" ]; then
             TAGS="-"
           fi
-          
+
           # Escape special characters in title for sed
           SAFE_TITLE=$(echo "$PR_TITLE" | sed 's/|/\\|/g')
-          
+
           # Create the new table row
-          NEW_ROW="| #${PR_NUMBER} | ${SAFE_TITLE} | [Link](${PR_URL}) | ${YEAR} | ${TAGS} |"
-          
+          NEW_ROW="| #${PR_NUMBER} | ${SAFE_TITLE} |"
+          NEW_ROW="${NEW_ROW} [Link](${PR_URL}) | ${YEAR} | ${TAGS} |"
+
           # Insert the new row after the PR_LIST_START marker
           sed -i "/<!-- PR_LIST_START -->/a ${NEW_ROW}" README.md
-          
+
           echo "Added PR #${PR_NUMBER} to README.md"
           cat README.md
-      
+
       - name: Commit changes
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email \
+            "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add README.md
-          git diff --staged --quiet || git commit -m "docs: add PR #${{ github.event.pull_request.number }} to merged PR list"
-      
+          if ! git diff --staged --quiet; then
+            git commit -m \
+              "docs: add PR #${{ github.event.pull_request.number }} to list"
+          fi
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:

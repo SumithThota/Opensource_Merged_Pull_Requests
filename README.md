@@ -7,6 +7,7 @@ This repository automatically tracks all merged Pull Requests with detailed info
 | PR # | Title | Link | Year | Tags |
 |------|-------|------|------|------|
 <!-- PR_LIST_START -->
+| #1 | Initial setup and automation | [Link](https://github.com/SumithThota/Opensource-Merged-PR-s-/pull/1) | 2025 | automation, documentation |
 <!-- PR_LIST_END -->
 
 ## 🤖 How It Works
