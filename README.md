@@ -18,9 +18,25 @@ This repository automatically tracks all merged Pull Requests with detailed info
 | #1 | Initial setup and automation | [Link](https://github.com/SumithThota/Opensource-Merged-PR-s-/pull/1) | 2025 | automation, documentation |
 <!-- PR_LIST_END -->
 
+## ✨ Features
+
+- 🔄 **Automatic Updates**: README is updated instantly when PRs are merged
+- 📝 **Rich Information**: Captures PR number, title, link, year, and tags
+- 🏷️ **Tag Support**: Automatically extracts and displays PR labels
+- 🔗 **Direct Links**: Quick access to merged PRs
+- 📅 **Year Tracking**: Organizes PRs by merge year
+- 🤖 **Zero Maintenance**: Fully automated with GitHub Actions
+
 ## 🤖 How It Works
 
-This repository uses GitHub Actions to automatically update the table above whenever a PR is merged. The workflow:
+This repository uses GitHub Actions to automatically update the table above whenever a PR is merged. 
+
+**Workflow Process:**
+```
+PR Merged → GitHub Actions Triggered → Extract PR Details → Update README Table → Auto Commit & Push
+```
+
+The workflow:
 1. Detects when a PR is merged
 2. Extracts PR details (number, title, labels, merge date)
 3. Updates this README with the new entry
